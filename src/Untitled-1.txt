@@ -1,0 +1,38 @@
+async function filmsArrange() {
+    if (!isEmpty(person)) {
+      if (person.films.length !== 0) {
+        var arr = [];
+        var filmUrl = person.films;
+        for (var i = 0; i < filmUrl.length; i++) {
+          await fetch(filmUrl[i], {signal})
+          .then(res => arr.push(res.json()))
+          .catch(err => console.log(err))
+        }
+        console.log("films ---- ", arr);
+        setFilmData(arr);
+      }
+    }
+  }
+
+  async function speciesArrange() {
+    if (!isEmpty(person)) {
+      if (person.species.length !== 0) {
+        var arr = [];
+        var speciesUrl = person.species;
+        for (var i = 0; i < speciesUrl.length; i++) {
+          await fetch(speciesUrl[i], {signal})
+          .then(res => arr.push(res.json()))
+          .catch(err => console.log(err))
+        }
+        console.log("species ---- ", speciesUrl ,arr);
+        setSpeciesData(arr);
+      }
+    }
+  }
+
+  return () => {
+      controller.abort();
+    };
+
+    var controller = new AbortController();
+    var signal = controller.signal;
